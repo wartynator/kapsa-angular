@@ -1,0 +1,41 @@
+<head>
+</head>
+
+
+<div class="row" style="margin-top: 4rem">     
+                           
+  <table class="table table-striped">
+        <tr>
+            <th>Stav</th>
+            <th>Vykon motora</th>
+            <th>Pocet rychlosti</th>
+            <th>Pocet airbagov</th>
+            <th>Karoseria</th>
+            <th>Pocet dveri </th>
+            <th>Pocet kilometrov</th>
+            <th>Rok vyroby</th>
+            <th>Model</th>
+            <th>Cena</th>
+            <th>Objem motora</th>
+            <th>Typ paliva</th>
+
+        </tr>
+        <tr *ngFor ="let vehicle of vehicles">                                         
+        <td>{{vehicle.stav}}</td>
+        <td>{{vehicle['vykon motora']}}</td>
+        <td>{{vehicle['pocet rychlosti']}}</td>
+        <td>{{vehicle['pocet airbagov']}}</td>
+        <td>{{vehicle.karoseria}}</td>
+        <td>{{vehicle['pocet dveri']}}</td>
+        <td>{{vehicle['pocet kilometrov']}}</td>
+        <td>{{vehicle['rok vyroby']}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.cena}}</td>
+        <td>{{vehicle['objem motora']}}</td>
+        <td>{{vehicle['typ paliva']}}</td>
+
+    </tr>
+
+  </table>
+
+</div>
