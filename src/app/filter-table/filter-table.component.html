@@ -1,0 +1,54 @@
+<div class="example-container">
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="stav">
+      <mat-header-cell *matHeaderCellDef> Stav </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.stav}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="vykon">
+      <mat-header-cell *matHeaderCellDef> Vykon motora </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['vykon motora']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pocet_rychlosti">
+      <mat-header-cell *matHeaderCellDef> Pocet rychlosti </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet rychlosti']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pocet_airbagov">
+      <mat-header-cell *matHeaderCellDef> Pocet airbagov </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet airbagov']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="karoseria">
+      <mat-header-cell *matHeaderCellDef> Karoseria </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.karoseria}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pocet_dveri">
+      <mat-header-cell *matHeaderCellDef> Pocet dveri </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet dveri']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pocet_kilometrov">
+      <mat-header-cell *matHeaderCellDef> Pocet kilometrov </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet kilometrov']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="rok_vyroby">
+      <mat-header-cell *matHeaderCellDef> Rok vyroby </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['rok vyroby']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="model">
+      <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.model}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cena">
+      <mat-header-cell *matHeaderCellDef> Cena </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.cena}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="objem_motora">
+      <mat-header-cell *matHeaderCellDef> Objem motora </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['objem motora']}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="typ_paliva">
+      <mat-header-cell *matHeaderCellDef> Typ paliva </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['typ paliva']}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

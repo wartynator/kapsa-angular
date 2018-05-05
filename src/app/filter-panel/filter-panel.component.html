@@ -1,0 +1,47 @@
+<div class="row" style="margin-top: 2rem">
+    <ul class="list-group"  style="width: 15rem">
+        <li class="list-group-item"><p>Stav</p>
+           <mat-radio-group>
+              <mat-radio-button> Havarovane </mat-radio-button>
+            </mat-radio-group>
+            
+        <li class="list-group-item"><p>Vykon</p>
+          <input type="range" min="1" max="500" #rangerVykon (input)="setVykon(rangerVykon.value)"></li>
+    
+        <li class="list-group-item"><p>Pocet rychlosti</p>
+          <input type="range" min="1" max="6" #rangerRychlosti (input)="setRychlost(rangerRychlosti.value)"></li>
+    
+          <li class="list-group-item"><p>Pocet airbagov</p>
+            <input type="range" min="1" max="8" #rangerAirbagov (input)="setAirbagy(rangerAirbagov.value)"></li>
+    
+            <li class="list-group-item">
+              <div class="form-group">
+                  <label for="karoseria">Karoseria:</label>
+                  <select #karoseria class="form-control" (change)="setKaroseria(karoseria.value)" >
+                    <option *ngFor ="let karoseria of karoserie">{{karoseria}}</option>
+                    
+                  </select>
+                </div> </li>
+    
+              <li class="list-group-item"><p>Pocet dveri</p>
+                <input type="range" min="1" max="4" #rangerDveri (input)="setDvere(rangerDveri.value)"></li>
+    
+                <li class="list-group-item"><p>Pocet Kilometrov</p>
+                  <input type="range" min="1" max="1000000" #rangerKilometrov (input)="setKilometre(rangerKilometre.value)"></li>
+    
+                  <li class="list-group-item"><p>Rok vyroby</p>
+                    <input type="range" min="1990" max="2018" #rangerRok (input)="setRok(rangerRok.value)"></li>
+    
+                    <li class="list-group-item"><p>Model</p>
+                      <input type="range" min="1" max="6" #rangerModel (input)="setModel(rangerModel.value)"></li>
+    
+                      <li class="list-group-item"><p>Cena</p>
+                        <input type="range" min="1" max="1000000" #rangerCeny (input)="setCena(rangerCeny.value)"></li>
+    
+                        <li class="list-group-item"><p>Pocet rychlosti</p>
+                          <input type="range" min="1" max="6" #rangerRychlost (input)="setRychlost(rangerRychlost.value)"></li>
+    
+                          <li class="list-group-item"><p>Pocet rychlosti</p>
+                            <input type="range" min="1" max="6" #rangerRychlost (input)="setRychlost(rangerRychlost.value)"></li>
+      </ul> 
+</div>    
