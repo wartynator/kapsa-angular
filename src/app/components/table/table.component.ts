@@ -3,8 +3,11 @@ import {Vehicle} from './../../models/Vehicle';
 import { VehicleService } from '../../services/vehicle.service';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
+import {MatSliderModule} from '@angular/material/slider';
+import * as _ from 'lodash';  
 
 @Component({
+
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
@@ -12,23 +15,68 @@ import { Observable } from 'rxjs/Observable';
 export class TableComponent implements OnInit {
   
    vehicles: Vehicle[];
- 
+   karoserie: string[];
+   value: any;
+  selectedRychlost: number;
+   selectedVykon:number;
+   selectedHavarovane:string;
+   selectedNehavarovane:string;
+   selectedAirbagy: number;
+   selectedKaroseria: string;
+   selectedDvere: number;
   constructor(private vehicleService: VehicleService) { 
+   
     this.vehicleService.getJSON().subscribe(res => {
-      console.log(res);
+      console.log(res);     
+      this.karoserie =  _.uniqWith(res.map(a => a.karoseria), _.isEqual);    
       this.vehicles = res;
    });
+   
    }
 
   
   
   ngOnInit() {
   
+
     
  
    
   }
 
+  setStav(value){
+    this.selectedHavarovane = value;
+    console.log(this.selectedHavarovane);
+  }
+
+  setVykon(value){
+    this.selectedVykon = value;
+    console.log(this.selectedVykon);
+  }
+
+  setRychlost(value){
+    this.selectedRychlost = value;
+    console.log(this.selectedRychlost);
+  }
+  
+
+  setAirbagy(value){
+    this.selectedAirbagy= value;
+    console.log(this.selectedAirbagy);
+  }
+
+  setKaroseria(value){
+    this.selectedKaroseria= value;
+    console.log(this.selectedKaroseria);
+  }
+
+  setDvere(value){
+    this.selectedDvere= value;
+    console.log(this.selectedDvere);
+  }
+
 }
+
+
 
 const VEHICLE_DATA: Vehicle[] = [{stav:'nehavarovane',vykonMotora: 271,pocetRychlosti:5,pocetAirbagov:8,karoseria:'sedan',pocetDveri:4,pocetKilometrov:125486,rokVyroby:2007,model:'',cena:71264,objemMotora:3210,typPaliva:'benzin'} ];
