@@ -27,21 +27,65 @@
                 <input type="range" min="1" max="4" #rangerDveri (input)="setDvere(rangerDveri.value)"></li>
     
                 <li class="list-group-item"><p>Pocet Kilometrov</p>
-                  <input type="range" min="1" max="1000000" #rangerKilometrov (input)="setKilometre(rangerKilometre.value)"></li>
-    
+                  <div class="row"  style="margin-left: 1rem;">
+                <label>Od:</label> 
+                <input type="text"  #KilometreOd (input)="setKilometreOd(KilometreOd.value)" style="margin-bottom: 0.5rem">
+              </div>
+              <div class="row" style="margin-left: 1rem;">
+                <label>Do:</label> 
+                <input type="text"  #KilometreDo (input)="setKilometreDo(KilometreDo.value)">
+              </div>
+            </li>
                   <li class="list-group-item"><p>Rok vyroby</p>
-                    <input type="range" min="1990" max="2018" #rangerRok (input)="setRok(rangerRok.value)"></li>
+                    <div class="row"  style="margin-left: 1rem;">
+                      <label>Od:</label> 
+                      <input type="text"  #rokOd (input)="setRokOd(rokOd.value)" style="margin-bottom: 0.5rem">
+                    </div>
+                    <div class="row" style="margin-left: 1rem;">
+                      <label>Do:</label> 
+                      <input type="text"  #rokDo (input)="setRokDo(rokDo.value)">
+                    </div>
+                  
+                  </li>
     
-                    <li class="list-group-item"><p>Model</p>
-                      <input type="range" min="1" max="6" #rangerModel (input)="setModel(rangerModel.value)"></li>
+                    <li class="list-group-item">
+                      <div class="form-group">
+                        <label for="model">Model:</label>
+                        <select #model class="form-control" (change)="setModel(model.value)" >
+                          <option *ngFor ="let model of modely">{{model}}</option>
+                          
+                        </select>
+                      </div> </li>
     
                       <li class="list-group-item"><p>Cena</p>
-                        <input type="range" min="1" max="1000000" #rangerCeny (input)="setCena(rangerCeny.value)"></li>
+                        <div class="row"  style="margin-left: 1rem;">
+                          <label>Od:</label> 
+                          <input type="text"  #CenaOd (input)="setCenaOd(KilometreOd.value)" style="margin-bottom: 0.5rem">
+                        </div>
+                        <div class="row" style="margin-left: 1rem;">
+                          <label>Do:</label> 
+                          <input type="text"  #CenaDo (input)="setCenaDo(KilometreDo.value)">
+                        </div>
+                      </li>
     
-                        <li class="list-group-item"><p>Pocet rychlosti</p>
-                          <input type="range" min="1" max="6" #rangerRychlost (input)="setRychlost(rangerRychlost.value)"></li>
+                        <li class="list-group-item"><p>Objem motora</p>
+                          <div class="row"  style="margin-left: 1rem;">
+                              <label>Od:</label> 
+                              <input type="text"  #objemOd (input)="setObjemOd(objemOd.value)" style="margin-bottom: 0.5rem">
+                            </div>
+                            <div class="row" style="margin-left: 1rem;">
+                              <label>Do:</label> 
+                              <input type="text"  #objemDo (input)="setObjemDo(ObjemDo.value)">
+                            </div>
+                        </li>
     
-                          <li class="list-group-item"><p>Pocet rychlosti</p>
-                            <input type="range" min="1" max="6" #rangerRychlost (input)="setRychlost(rangerRychlost.value)"></li>
+                          <li class="list-group-item"> 
+                            <div class="form-group">
+                            <label for="palivo">Typ paliva:</label>
+                            <select #palivo class="form-control" (change)="setPalivo(palivo.value)" >
+                              <option *ngFor ="let palivo of paliva">{{palivo}}</option>
+                              
+                            </select>
+                          </div> </li>
       </ul> 
 </div>    

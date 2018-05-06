@@ -4,3 +4,7 @@
     font-size: small;
       
 }
+
+.formfield * {
+    vertical-align: middle;
+  }
