@@ -1,0 +1,9 @@
+.example-container {  
+  text-align: center;
+  font-style: italic;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: small;
+    padding-right: 15px;
+    padding-bottom: 50px;
+    padding-left: 270px;
+  }
