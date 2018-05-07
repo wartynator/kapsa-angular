@@ -9,6 +9,9 @@ import { VehicleService } from './services/vehicle.service';
 import { FilterTableComponent } from './filter-table/filter-table.component';
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableDataSource} from '@angular/material';
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import {MatRadioModule} from '@angular/material/radio';
     FilterPanelComponent,  
   ],
   imports: [
+    
     BrowserModule,
     MatTableModule,
     HttpClientModule,
     MatSliderModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [VehicleService],
   bootstrap: [AppComponent]

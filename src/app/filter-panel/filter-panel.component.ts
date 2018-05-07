@@ -6,6 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import {MatSliderModule} from '@angular/material/slider';
 import * as _ from 'lodash';
+import { Preference } from './../models/Preference';;
 
 @Component({
   selector: 'app-filter-panel',
@@ -18,10 +19,11 @@ export class FilterPanelComponent implements OnInit {
   modely: string[];
   paliva: string[];
   value: any;
- selectedRychlost: number;
+  preference: Preference;
+  selectedRychlost: number;
   selectedVykon:number;
-  selectedHavarovane:string;
-  selectedNehavarovane:string;
+  selectedHavarovane:boolean;
+
   selectedAirbagy: number;
   selectedKaroseria: string;
   selectedDvere: number;
@@ -38,7 +40,7 @@ export class FilterPanelComponent implements OnInit {
 
 
   constructor(private vehicleService: VehicleService) {
-
+/*
     this.vehicleService.getJSON().subscribe(res => {
       console.log(res);     
       this.karoserie =  _.uniqWith(res.map(a => a.karoseria), _.isEqual);    
@@ -46,7 +48,7 @@ export class FilterPanelComponent implements OnInit {
       this.paliva =  _.uniqWith(res.map(a => a['typ paliva']), _.isEqual);   
       
       this.vehicles = res;
-   });
+   });*/
    }
 
   ngOnInit() {
@@ -54,7 +56,14 @@ export class FilterPanelComponent implements OnInit {
 
 
   setStav(value){
-    this.selectedHavarovane = value;
+    if(value == 1 ){
+      this.selectedHavarovane = true;
+    }
+     else{
+      this.selectedHavarovane = false;
+     }
+  
+     
     console.log(this.selectedHavarovane);
   }
 
@@ -132,6 +141,25 @@ export class FilterPanelComponent implements OnInit {
   setPalivo(value){
     this.selectedPalivo= value;
     console.log(this.selectedPalivo);
+  }
+
+
+  postPreference(preference: Preference){
+   
+    preference.vykonMotora=this.selectedVykon;
+  preference.pocetRychlosti=this.selectedRychlost;
+    preference.pocetAirbagov=this.selectedAirbagy;
+    preference.karoseria=this.selectedKaroseria;
+    preference.pocetDveri=this.selectedDvere;
+    preference.pocetKilometrov=[this.selectedKilometreOd,this.selectedKilometreDo];
+   preference.rokVyroby=[this.selectedRokOd,this.selectedRokDo];
+    preference.model=this.selectedModel;
+    preference.cena=[this.selectedCenaOd,this.selectedCenaDo];
+    preference.objemMotora=[this.selectedObjemOd,this.selectedObjemDo];
+    preference.typPaliva=this.selectedPalivo;
+    console.log(preference);    
+    this.vehicleService.postPrefrences(preference);
+
   }
 
   

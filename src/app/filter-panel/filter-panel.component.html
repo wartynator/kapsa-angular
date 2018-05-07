@@ -1,9 +1,14 @@
 <div class="row" style="margin-top: 2rem">
     <ul class="list-group"  style="width: 15rem">
-        <li class="list-group-item"><p>Stav</p>
-           <mat-radio-group>
-              <mat-radio-button> Havarovane </mat-radio-button>
-            </mat-radio-group>
+        <li class="list-group-item"><p>Stav</p>  
+          <div class="row" > 
+            <label style="margin-left: 2rem;">Havarovane</label> 
+            <label style="margin-left: 3rem;">Nehavarovane</label>
+          </div>
+          <div class="row" style="margin-left:2rem">
+         <input type="range" min="1" max="2" #rangerStav (input)="setStav(rangerStav.value)">
+        </div>
+        </li>
             
         <li class="list-group-item"><p>Vykon</p>
           <input type="range" min="1" max="500" #rangerVykon (input)="setVykon(rangerVykon.value)"></li>
@@ -75,7 +80,7 @@
                             </div>
                             <div class="row" style="margin-left: 1rem;">
                               <label>Do:</label> 
-                              <input type="text"  #objemDo (input)="setObjemDo(ObjemDo.value)">
+                              <input type="text"  #objemDo (input)="setObjemDo(objemDo.value)">
                             </div>
                         </li>
     
@@ -87,5 +92,10 @@
                               
                             </select>
                           </div> </li>
+                          <li class="list-group-item"> 
+                              <button class="btn btn-info btn-lg" (click)="postPreference(preference)">Filtruj</button>
+                               </li>
+                         
       </ul> 
+      
 </div>    
