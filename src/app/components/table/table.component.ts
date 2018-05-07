@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Vehicle} from './../../models/Vehicle';
 import { VehicleService } from '../../services/vehicle.service';
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {MatSliderModule} from '@angular/material/slider';
 import * as _ from 'lodash';  
 

@@ -1,9 +1,10 @@
 <div class="example-container mat-elevation-z8">
-    <div class="example-header">
+    <!-- <div class="example-header">
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
-      </div>
+      </div> -->
+
 
   <table mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="stav">
@@ -35,7 +36,7 @@
       <td mat-cell *matCellDef="let vehicle"> {{vehicle['pocet kilometrov']}} </td>
     </ng-container>
     <ng-container matColumnDef="rok_vyroby">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rok vyroby </th>>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rok vyroby </th>
       <td mat-cell *matCellDef="let vehicle"> {{vehicle['rok vyroby']}} </td>
     </ng-container>
     <ng-container matColumnDef="model">

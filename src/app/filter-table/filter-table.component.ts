@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {Vehicle} from './../models/Vehicle';
 import { VehicleService } from '../services/vehicle.service';
 import {DataSource} from '@angular/cdk/collections';
-import { of } from 'rxjs/observable/of';
-import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs';
+import { Observable} from 'rxjs';
 import {MatSliderModule} from '@angular/material/slider';
 import * as _ from 'lodash';  
 import {MatTableDataSource, MatSort} from '@angular/material';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import {MatTableModule} from '@angular/material';
 
 
@@ -29,7 +29,7 @@ export class FilterTableComponent implements OnInit {
   selectedKaroseria: string;
   selectedDvere: number;
   //dataSource = new VehicleDataSource(this.vehicleService);
-  dataSource = new MatTableDataSource(VEHICLE_DATA);
+  dataSource = new VehicleDataSource(this.vehicleService);
 
   
  
