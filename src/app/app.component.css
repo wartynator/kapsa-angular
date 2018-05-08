@@ -1,6 +1,10 @@
 .filter-panel{
-float: left;
+    float: left;
 }
 .filter.table{
     float: right;
+}
+.toolbar{
+    background-color: blue;
+    text-align: center;
 }

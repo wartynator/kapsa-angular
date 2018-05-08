@@ -1,12 +1,17 @@
 <div class="example-container mat-elevation-z8">
-    <div class="example-header">
+    
+  <div class="example-header">
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
       </div>
 
+  <mat-paginator [length]="100"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
 
-  <mat-table #table [dataSource]="dataSource" matSort>
+  <mat-table #table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
     <ng-container matColumnDef="stav">
       <mat-header-cell *matHeaderCellDef mat-sort-header = "stav"> Stav </mat-header-cell>
       <mat-cell *matCellDef="let vehicle"> {{vehicle.stav}} </mat-cell>
