@@ -1,61 +1,61 @@
 <div class="example-container mat-elevation-z8">
-    <!-- <div class="example-header">
+    <div class="example-header">
         <mat-form-field>
           <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
-      </div> -->
+      </div>
 
 
-  <table mat-table #table [dataSource]="dataSource" matSort>
+  <mat-table #table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="stav">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Stav </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle.stav}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "stav"> Stav </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.stav}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="vykon">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vykon motora </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['vykon motora']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "vykon"> Vykon motora </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['vykon motora']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pocet_rychlosti">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pocet rychlosti </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['pocet rychlosti']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "pocet_rychlosti"> Pocet rychlosti </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet rychlosti']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pocet_airbagov">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pocet airbagov </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['pocet airbagov']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "pocet_airbagov"> Pocet airbagov </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet airbagov']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="karoseria">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Karoseria </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle.karoseria}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "karoseria"> Karoseria </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.karoseria}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pocet_dveri">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pocet dveri </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['pocet dveri']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "pocet_dveri"> Pocet dveri </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet dveri']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="pocet_kilometrov">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pocet kilometrov </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['pocet kilometrov']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "pocet_kilometrov"> Pocet kilometrov </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['pocet kilometrov']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="rok_vyroby">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Rok vyroby </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['rok vyroby']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "rok_vyroby"> Rok vyroby </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['rok vyroby']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="model">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle.model}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "model"> Model </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.model}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="cena">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cena </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle.cena}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "cena"> Cena </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle.cena}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="objem_motora">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Objem motora </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['objem motora']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "objem_motora"> Objem motora </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['objem motora']}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="typ_paliva">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ paliva </th>
-      <td mat-cell *matCellDef="let vehicle"> {{vehicle['typ paliva']}} </td>
+      <mat-header-cell *matHeaderCellDef mat-sort-header = "typ_paliva"> Typ paliva </mat-header-cell>
+      <mat-cell *matCellDef="let vehicle"> {{vehicle['typ paliva']}} </mat-cell>
     </ng-container>
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>

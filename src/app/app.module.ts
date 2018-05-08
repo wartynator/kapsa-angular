@@ -12,7 +12,9 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatTableDataSource} from '@angular/material';
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -22,14 +24,17 @@ import { MatInputModule } from '@angular/material';
     FilterPanelComponent,  
   ],
   imports: [
-    
     BrowserModule,
     MatTableModule,
     HttpClientModule,
     MatSliderModule,
     MatRadioModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    HttpModule
+
   ],
   providers: [VehicleService],
   bootstrap: [AppComponent]
