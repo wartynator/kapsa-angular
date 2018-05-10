@@ -26,8 +26,7 @@ export class TableComponent implements OnInit {
    selectedDvere: number;
   constructor(private vehicleService: VehicleService) { 
    
-    this.vehicleService.getJSON().subscribe(res => {
-      console.log(res);     
+    this.vehicleService.postDomainRequest().subscribe(res => {    
       this.karoserie =  _.uniqWith(res.map(a => a.karoseria), _.isEqual);    
       this.vehicles = res;
    });
