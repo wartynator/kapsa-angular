@@ -26,21 +26,20 @@ export class FilterPanelComponent implements OnInit {
  
   selectedRychlost: number;
   selectedVykon:number;
-  selectedHavarovane:string;
-
+  selectedHavarovane:string[]=[];
   selectedAirbagy: number;
-  selectedKaroseria: string;
+  selectedKaroseria: string[]=[];
   selectedDvere: number;
   selectedKilometreOd: number;
   selectedKilometreDo: number;
   selectedRokOd: number;
   selectedRokDo: number;
-  selectedModel: string;
+  selectedModel: string[]=[];
   selectedCenaOd: number;
   selectedCenaDo: number;
   selectedObjemOd: number;
   selectedObjemDo: number;
-  selectedPalivo: string;
+  selectedPalivo: string[]=[];
 
 
   constructor(private vehicleService: VehicleService) {
@@ -72,10 +71,10 @@ export class FilterPanelComponent implements OnInit {
 
   setStav(value){
     if(value == 1 ){
-      this.selectedHavarovane = "havarovane";
+      this.selectedHavarovane.push("havarovane");
     }
      else{
-      this.selectedHavarovane = "nehavarovane";
+      this.selectedHavarovane.push ("nehavarovane");
      }
   
      
@@ -129,7 +128,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   setModel(value){
-    this.selectedModel= value;
+    this.selectedModel.push(value);
     console.log(this.selectedModel);
   }
 
@@ -168,7 +167,7 @@ export class FilterPanelComponent implements OnInit {
   this.preferences.push(
   {type:"JsonStringPreference",attributeName:"stav",restrictions:this.selectedHavarovane},
   {type:"JsonDoublePreference",attributeName:"vykon motora",restrictions:[this.selectedVykon,this.selectedVykon]},
-  {type:"JsonDoublePreference",attributeName:"pocet rychlosti",restrictions:[this.selectedDvere,this.selectedDvere]},
+  {type:"JsonDoublePreference",attributeName:'pocet rychlosti',restrictions:[this.selectedRychlost,this.selectedRychlost]},
   {type:"JsonDoublePreference",attributeName:"pocet airbagov",restrictions:[this.selectedAirbagy,this.selectedAirbagy]},
   {type:"JsonStringPreference",attributeName:"karoseria",restrictions:this.selectedKaroseria},
   {type:"JsonDoublePreference",attributeName:"pocet dveri",restrictions:[this.selectedDvere,this.selectedDvere]},
@@ -177,6 +176,7 @@ export class FilterPanelComponent implements OnInit {
   {type:"JsonStringPreference",attributeName:"model",restrictions:this.selectedModel},
   {type:"JsonDoublePreference",attributeName:"cena",restrictions:[this.selectedCenaOd,this.selectedCenaDo]},
   {type:"JsonDoublePreference",attributeName:"objem motora",restrictions:[this.selectedObjemOd,this.selectedModel]},
+  {type:"JsonStringPreference",attributeName:"typ paliva",restrictions:this.selectedPalivo},
 );
  
 

@@ -43,6 +43,7 @@ export class FilterTableComponent {
   }
 
   sendDomainRequest(){
+   
     this.vehicleService.postDomainRequest();
   }
  
