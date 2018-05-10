@@ -11,6 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 import { MatTableModule } from '@angular/material';
 import { Sort } from '@angular/material';
 import { PageEvent } from '@angular/material';
+import { domainRequest } from '../models/domainRequest';
 
 @Component({
   selector: 'app-filter-table',
@@ -19,6 +20,7 @@ import { PageEvent } from '@angular/material';
 })
 export class FilterTableComponent {
   vehicles: Vehicle[] = [];
+  valueFilter: any;
   
   //vykaslal som sa na ten export class co mame dole a idem rovno cez MatTableDataSource, teraz 
   // cielom bolo dostat pole Vehicle,co som spravil v ngOnInit
@@ -35,6 +37,15 @@ export class FilterTableComponent {
     this.dataSource.filter = filterValue;
   }
 
+  fulltextFilter(valueFilter){      
+    this.vehicleService.getFulltext(valueFilter);
+    
+  }
+
+  sendDomainRequest(){
+    this.vehicleService.postDomainRequest();
+  }
+ 
   constructor(private vehicleService: VehicleService) {
     this.sortedData = this.vehicles.slice();
     this.dataSource = new MatTableDataSource(this.vehicles);
@@ -50,7 +61,7 @@ export class FilterTableComponent {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.getVehicles().then((vehicles) => {
-      this.dataSource.data = vehicles;
+      this.dataSource.data = vehicles;  
     }, (e) => {
       // You will need to handle the error here :)
     });

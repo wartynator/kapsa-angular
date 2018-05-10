@@ -1,5 +1,5 @@
 <div class="row" style="margin-top: 2rem">
-    <ul class="list-group"  style="width: 15rem">
+    <ul class="list-group"  style="width: 15rem" (input)="sendPreferences()" (input)="sendDomainRequest()">
         <li class="list-group-item"><p>Stav</p>  
           <div class="row" > 
             <label style="margin-left: 2rem;">Havarovane</label> 
@@ -93,7 +93,7 @@
                             </select>
                           </div> </li>
                           <li class="list-group-item"> 
-                              <button class="btn btn-info btn-lg" (click)="postPreference(preference)">Filtruj</button>
+                              <button class="btn btn-info btn-lg" >Filtruj</button>
                                </li>
                          
       </ul> 

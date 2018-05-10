@@ -6,7 +6,9 @@ import { of } from 'rxjs';
 import { Observable } from 'rxjs';
 import {MatSliderModule} from '@angular/material/slider';
 import * as _ from 'lodash';
-import { Preference } from './../models/Preference';;
+import { Preference } from './../models/Preference';
+import { domainRequest } from '../models/domainRequest';
+;
 
 @Component({
   selector: 'app-filter-panel',
@@ -14,15 +16,17 @@ import { Preference } from './../models/Preference';;
   styleUrls: ['./filter-panel.component.css']
 })
 export class FilterPanelComponent implements OnInit {
-  vehicles: Vehicle[];
+  vehicles: Vehicle[]=[];
+  preferences: Preference[]=[];
   karoserie: string[];
   modely: string[];
   paliva: string[];
   value: any;
-  preference: Preference;
+  valueFilter: any;
+ 
   selectedRychlost: number;
   selectedVykon:number;
-  selectedHavarovane:boolean;
+  selectedHavarovane:string;
 
   selectedAirbagy: number;
   selectedKaroseria: string;
@@ -49,6 +53,17 @@ export class FilterPanelComponent implements OnInit {
       
       this.vehicles = res;
    });*/
+
+   this.vehicleService.getJSON().subscribe((vehicle) => {
+    // kazdy prvok z (vehicle) pridam this.vehicles co mam v instancnej premennej
+      vehicle.forEach(element => {
+       
+      this.vehicles.push(element);        
+      this.karoserie =  _.uniqWith(this.vehicles.map(a => a.karoseria), _.isEqual);    
+      this.modely =  _.uniqWith(this.vehicles.map(a => a.model), _.isEqual); 
+      this.paliva =  _.uniqWith(this.vehicles.map(a => a['typ paliva']), _.isEqual);   
+      });
+  });
    }
 
   ngOnInit() {
@@ -57,10 +72,10 @@ export class FilterPanelComponent implements OnInit {
 
   setStav(value){
     if(value == 1 ){
-      this.selectedHavarovane = true;
+      this.selectedHavarovane = "havarovane";
     }
      else{
-      this.selectedHavarovane = false;
+      this.selectedHavarovane = "nehavarovane";
      }
   
      
@@ -143,26 +158,36 @@ export class FilterPanelComponent implements OnInit {
     console.log(this.selectedPalivo);
   }
 
+  setValueFilter(valueFilter){
+    this.valueFilter=valueFilter;
+  }
 
-  postPreference(preference: Preference){
-   
-    preference.vykonMotora=this.selectedVykon;
-  preference.pocetRychlosti=this.selectedRychlost;
-    preference.pocetAirbagov=this.selectedAirbagy;
-    preference.karoseria=this.selectedKaroseria;
-    preference.pocetDveri=this.selectedDvere;
-    preference.pocetKilometrov=[this.selectedKilometreOd,this.selectedKilometreDo];
-   preference.rokVyroby=[this.selectedRokOd,this.selectedRokDo];
-    preference.model=this.selectedModel;
-    preference.cena=[this.selectedCenaOd,this.selectedCenaDo];
-    preference.objemMotora=[this.selectedObjemOd,this.selectedObjemDo];
-    preference.typPaliva=this.selectedPalivo;
-    console.log(preference);    
-    this.vehicleService.postPrefrences(preference);
+
+  sendPreferences(){ 
+   this.preferences=[];   
+  this.preferences.push(
+  {type:"JsonStringPreference",attributeName:"stav",restrictions:this.selectedHavarovane},
+  {type:"JsonDoublePreference",attributeName:"vykon motora",restrictions:[this.selectedVykon,this.selectedVykon]},
+  {type:"JsonDoublePreference",attributeName:"pocet rychlosti",restrictions:[this.selectedDvere,this.selectedDvere]},
+  {type:"JsonDoublePreference",attributeName:"pocet airbagov",restrictions:[this.selectedAirbagy,this.selectedAirbagy]},
+  {type:"JsonStringPreference",attributeName:"karoseria",restrictions:this.selectedKaroseria},
+  {type:"JsonDoublePreference",attributeName:"pocet dveri",restrictions:[this.selectedDvere,this.selectedDvere]},
+  {type:"JsonDoublePreference",attributeName:"pocet kilometrov",restrictions:[this.selectedKilometreOd,this.selectedKilometreDo]},
+  {type:"JsonDoublePreference",attributeName:"rok vyroby",restrictions:[this.selectedRokOd,this.selectedRokDo]},
+  {type:"JsonStringPreference",attributeName:"model",restrictions:this.selectedModel},
+  {type:"JsonDoublePreference",attributeName:"cena",restrictions:[this.selectedCenaOd,this.selectedCenaDo]},
+  {type:"JsonDoublePreference",attributeName:"objem motora",restrictions:[this.selectedObjemOd,this.selectedModel]},
+);
+ 
+
+    this.vehicleService.getPreferences(this.preferences);
 
   }
 
   
+  sendDomainRequest(){
+    this.vehicleService.postDomainRequest();
+  }
 
 
 
