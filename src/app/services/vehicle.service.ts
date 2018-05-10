@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, observable } from 'rxjs';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {Vehicle} from './../models/Vehicle';
@@ -12,7 +12,7 @@ import { domainRequest } from '../models/domainRequest';
 import { HttpHeaders } from '@angular/common/http';
 import {RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
-
+import 'rxjs/add/observable/of';
 
 
 @Injectable()
@@ -35,40 +35,34 @@ export class VehicleService {
    
    
 
-   public getJSON2(): Vehicle[] {
-    this.http.get(this.serverUrl).subscribe((res:Response) => {
-      this.vehicles =  <Vehicle[]>res.json()
-    });
-    console.log(this.vehicles + " ++++++++++++++++++++++++");
-    return this.vehicles;
-  } 
+  //  public getJSON2(): Vehicle[] {
+  //   this.http.get(this.serverUrl).subscribe((res:Response) => {
+  //     this.vehicles =  <Vehicle[]>res.json()
+  //   });
+  //   console.log(this.vehicles + " ++++++++++++++++++++++++");
+  //   return this.vehicles;
+  // } 
 
-  public getJSON(): Observable<Vehicle[]> {
+  // public getJSON(): Observable<Vehicle[]> {
         
-    return this.http2.get<Vehicle[]>(this.serverUrl);
-    // .subscribe(res =>
-    //   this.mySubject = new BehaviorSubject(res)
-    // );
-    // console.log(this.mySubject);
-    // return this.mySubject;
-  } 
+  //   return this.http2.get<Vehicle[]>(this.serverUrl);
+  //   // .subscribe(res =>
+  //   //   this.mySubject = new BehaviorSubject(res)
+  //   // );
+  //   // console.log(this.mySubject);
+  //   // return this.mySubject;
+  // } 
 
     public getPreferences(preferences: Preference[]){
       this.preferences=preferences;
-      console.log(this.preferences);
+      // console.log(this.preferences);
     }
     
     public getFulltext(fulltext: string){
-this.fulltext=fulltext;
+        this.fulltext=fulltext;
 
     }
-
-
-    
-
-
-
-    public postDomainRequest(){
+    public postDomainRequest() : Observable<Vehicle[]>{
       let headers1 = new Headers();
       headers1.append('Content-Type', 'application/json');
       headers1.append('accept','application/json');
@@ -79,11 +73,15 @@ this.fulltext=fulltext;
       this.domainRequest.preferences=this.preferences;
       
       console.log(this.domainRequest);
-     this.http.post(this.serverUrl,this.domainRequest,options);
-     this.getJSON().subscribe(res => console.log(res));
+      let veh: Observable<Vehicle[]> = new Observable();
+      // return new Observable(observable => {
+      //   this.http.post(this.serverUrl, this.domainRequest, options).subscribe(res=>
+      //     observable.next(res.json())
+      //   );
+      // }) 
+      this.http.post(this.serverUrl, this.domainRequest, options).subscribe(res => veh = Observable.of(res.json()))    
+      veh.subscribe(r => console.log(r));
+      return veh;
+
     }
-                    
-
 }
-   
-

@@ -39,11 +39,9 @@ export class FilterTableComponent {
 
   fulltextFilter(valueFilter){      
     this.vehicleService.getFulltext(valueFilter);
-    
   }
 
   sendDomainRequest(){
-   
     this.vehicleService.postDomainRequest();
   }
  
@@ -53,12 +51,13 @@ export class FilterTableComponent {
   }
   
   getVehicles() {
-    return this.vehicleService.getJSON().toPromise();
+    return this.vehicleService.postDomainRequest().toPromise();
   }
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
+    console.log(this.vehicles);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.getVehicles().then((vehicles) => {
@@ -100,14 +99,3 @@ function compare(a, b, isAsc) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
 
-// const VEHICLE_DATA: Vehicle[] = [{stav:'nehavarovane',vykonMotora: 271,pocetRychlosti:5,pocetAirbagov:8,karoseria:'sedan',pocetDveri:4,pocetKilometrov:125486,rokVyroby:2007,model:'',cena:71264,objemMotora:3210,typPaliva:'benzin'} ];
-
-// export class VehicleDataSource extends DataSource<any> {
-//   constructor(private vehicleService: VehicleService) {
-//     super();
-//   }
-//   connect(): Observable<Vehicle[]> {
-//     return this.vehicleService.getJSON();
-//   }
-//   disconnect() {}
-// }

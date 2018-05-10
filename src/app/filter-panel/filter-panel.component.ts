@@ -43,17 +43,7 @@ export class FilterPanelComponent implements OnInit {
 
 
   constructor(private vehicleService: VehicleService) {
-/*
-    this.vehicleService.getJSON().subscribe(res => {
-      console.log(res);     
-      this.karoserie =  _.uniqWith(res.map(a => a.karoseria), _.isEqual);    
-      this.modely =  _.uniqWith(res.map(a => a.model), _.isEqual); 
-      this.paliva =  _.uniqWith(res.map(a => a['typ paliva']), _.isEqual);   
-      
-      this.vehicles = res;
-   });*/
-
-   this.vehicleService.getJSON().subscribe((vehicle) => {
+   this.vehicleService.postDomainRequest().subscribe((vehicle) => {
     // kazdy prvok z (vehicle) pridam this.vehicles co mam v instancnej premennej
       vehicle.forEach(element => {
        
@@ -67,7 +57,9 @@ export class FilterPanelComponent implements OnInit {
 
   ngOnInit() {
   }
+  filtruj(){
 
+  }
 
   setStav(value){
     if(value == 1 ){
