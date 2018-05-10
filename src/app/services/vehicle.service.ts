@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { of, observable } from 'rxjs';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -13,15 +13,15 @@ import { HttpHeaders } from '@angular/common/http';
 import {RequestOptions} from '@angular/http';
 import {Headers} from '@angular/http';
 import 'rxjs/add/observable/of';
-
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class VehicleService {
-
+public onFilterChanged$ : EventEmitter<number>;
   
   constructor(private http: Http, private http2: HttpClient) {
     var obj;
-  
+    this.onFilterChanged$ = new EventEmitter();
    // this.getJSON().subscribe(data => obj=data, error => console.log(error));
    }
    
@@ -73,15 +73,12 @@ export class VehicleService {
       this.domainRequest.preferences=this.preferences;
       
       console.log(this.domainRequest);
-      let veh: Observable<Vehicle[]> = new Observable();
       // return new Observable(observable => {
       //   this.http.post(this.serverUrl, this.domainRequest, options).subscribe(res=>
       //     observable.next(res.json())
       //   );
       // }) 
-      this.http.post(this.serverUrl, this.domainRequest, options).subscribe(res => veh = Observable.of(res.json()))    
-      veh.subscribe(r => console.log(r));
-      return veh;
-
+      return this.http.post(this.serverUrl, this.domainRequest, options).map((res:Response) => res.json())    
+      
     }
 }

@@ -46,7 +46,6 @@ export class FilterPanelComponent implements OnInit {
    this.vehicleService.postDomainRequest().subscribe((vehicle) => {
     // kazdy prvok z (vehicle) pridam this.vehicles co mam v instancnej premennej
       vehicle.forEach(element => {
-       
       this.vehicles.push(element);        
       this.karoserie =  _.uniqWith(this.vehicles.map(a => a.karoseria), _.isEqual);    
       this.modely =  _.uniqWith(this.vehicles.map(a => a.model), _.isEqual); 
@@ -178,7 +177,8 @@ export class FilterPanelComponent implements OnInit {
 
   
   sendDomainRequest(){
-    this.vehicleService.postDomainRequest();
+
+    this.vehicleService.onFilterChanged$.emit(42);
   }
 
 

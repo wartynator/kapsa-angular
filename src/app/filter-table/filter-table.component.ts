@@ -48,10 +48,16 @@ export class FilterTableComponent {
   constructor(private vehicleService: VehicleService) {
     this.sortedData = this.vehicles.slice();
     this.dataSource = new MatTableDataSource(this.vehicles);
+    this.vehicleService.onFilterChanged$.subscribe(item => {
+      this.getVehicles().subscribe((vehicles) => {
+        console.log(vehicles)
+        this.dataSource.data = vehicles;  
+      });
+    });
   }
   
   getVehicles() {
-    return this.vehicleService.postDomainRequest().toPromise();
+    return this.vehicleService.postDomainRequest();
   }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -60,10 +66,9 @@ export class FilterTableComponent {
     console.log(this.vehicles);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.getVehicles().then((vehicles) => {
+    this.getVehicles().subscribe((vehicles) => {
+      console.log(vehicles)
       this.dataSource.data = vehicles;  
-    }, (e) => {
-      // You will need to handle the error here :)
     });
   }
   
