@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpRequest } from 'selenium-webdriver/http';
 // import { METHODS } from 'http';
 import { Http, Response } from '@angular/http';
+import { domainRequest } from '../models/domainRequest';
 
 
 @Injectable()
@@ -19,6 +20,9 @@ export class VehicleService {
    }
 
    public vehicles: Vehicle[] = [];
+   public preferences: Preference[]=[];
+   public fulltext: string="";
+   public domainRequest: domainRequest;
    public serverUrl = 'http://localhost:8080/domainObjects';
    public mySubject;
 
@@ -40,9 +44,24 @@ export class VehicleService {
     // return this.mySubject;
   } 
 
-  
-    public postPrefrences(Preference: Preference){
-    //  return this.http.post(this.serverUrl,Preference);
+    public getPreferences(preferences: Preference[]){
+      this.preferences=preferences;
+      console.log(this.preferences);
+    }
+    
+    public getFulltext(fulltext: string){
+this.fulltext=fulltext;
+
+    }
+
+
+    public postDomainRequest(){
+      this.domainRequest={};
+      this.domainRequest.domainString="auta";
+      this.domainRequest.fullTextInput=this.fulltext;
+      this.domainRequest.preferences=this.preferences;
+      console.log(this.domainRequest);
+    return this.http.post(this.serverUrl,this.domainRequest);
     }
                     
 

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatSortModule } from '@angular/material';
 import { MatSliderModule } from '@angular/material/';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -39,7 +39,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     NoopAnimationsModule,
     HttpModule,
     MatPaginatorModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSortModule
   ],
   providers: [VehicleService],
   bootstrap: [AppComponent]
