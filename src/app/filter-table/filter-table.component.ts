@@ -24,7 +24,7 @@ export class FilterTableComponent {
   
   //vykaslal som sa na ten export class co mame dole a idem rovno cez MatTableDataSource, teraz 
   // cielom bolo dostat pole Vehicle,co som spravil v ngOnInit
-  dataSource: MatTableDataSource<Vehicle>;
+  dataSource: MatTableDataSource<Vehicle>=new MatTableDataSource;
 
   // zobrazene stlpce
   displayedColumns = ['stav', 'vykon', 'pocet_rychlosti', 'pocet_airbagov', 'karoseria', 'pocet_dveri', 'pocet_kilometrov', 'rok_vyroby', 'model', 'cena', 'objem_motora', 'typ_paliva'];
@@ -47,7 +47,7 @@ export class FilterTableComponent {
  
   constructor(private vehicleService: VehicleService) {
     this.sortedData = this.vehicles.slice();
-    this.dataSource = new MatTableDataSource(this.vehicles);
+    
     this.vehicleService.onFilterChanged$.subscribe(item => {
       this.getVehicles().subscribe((vehicles) => {
         console.log(vehicles)
@@ -63,13 +63,7 @@ export class FilterTableComponent {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
-    console.log(this.vehicles);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.getVehicles().subscribe((vehicles) => {
-      console.log(vehicles)
-      this.dataSource.data = vehicles;  
-    });
+    
   }
   
   sortData(sort: Sort) {

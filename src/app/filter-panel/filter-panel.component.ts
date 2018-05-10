@@ -45,6 +45,7 @@ export class FilterPanelComponent implements OnInit {
   constructor(private vehicleService: VehicleService) {
    this.vehicleService.postDomainRequest().subscribe((vehicle) => {
     // kazdy prvok z (vehicle) pridam this.vehicles co mam v instancnej premennej
+    this.vehicles=[];
       vehicle.forEach(element => {
       this.vehicles.push(element);        
       this.karoserie =  _.uniqWith(this.vehicles.map(a => a.karoseria), _.isEqual);    
@@ -155,6 +156,8 @@ export class FilterPanelComponent implements OnInit {
 
   sendPreferences(){ 
    this.preferences=[];   
+
+
   this.preferences.push(
   {type:"JsonStringPreference",attributeName:"stav",restrictions:this.selectedHavarovane},
   {type:"JsonDoublePreference",attributeName:"vykon motora",restrictions:[this.selectedVykon,this.selectedVykon]},
@@ -166,7 +169,7 @@ export class FilterPanelComponent implements OnInit {
   {type:"JsonDoublePreference",attributeName:"rok vyroby",restrictions:[this.selectedRokOd,this.selectedRokDo]},
   {type:"JsonStringPreference",attributeName:"model",restrictions:this.selectedModel},
   {type:"JsonDoublePreference",attributeName:"cena",restrictions:[this.selectedCenaOd,this.selectedCenaDo]},
-  {type:"JsonDoublePreference",attributeName:"objem motora",restrictions:[this.selectedObjemOd,this.selectedModel]},
+  {type:"JsonDoublePreference",attributeName:"objem motora",restrictions:[this.selectedObjemOd,this.selectedObjemDo]},
   {type:"JsonStringPreference",attributeName:"typ paliva",restrictions:this.selectedPalivo},
 );
  
