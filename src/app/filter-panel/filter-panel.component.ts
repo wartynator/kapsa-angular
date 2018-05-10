@@ -24,21 +24,21 @@ export class FilterPanelComponent implements OnInit {
   value: any;
   valueFilter: any;
  
-  selectedRychlost: number;
-  selectedVykon:number;
+  selectedRychlost: number=0;
+  selectedVykon:number=0;
   selectedHavarovane:string[]=[];
-  selectedAirbagy: number;
+  selectedAirbagy: number=0;
   selectedKaroseria: string[]=[];
-  selectedDvere: number;
-  selectedKilometreOd: number;
-  selectedKilometreDo: number;
-  selectedRokOd: number;
-  selectedRokDo: number;
+  selectedDvere: number=0;
+  selectedKilometreOd: number=0;
+  selectedKilometreDo: number=1000000000;
+  selectedRokOd: number=0;
+  selectedRokDo: number=10000000000;
   selectedModel: string[]=[];
-  selectedCenaOd: number;
-  selectedCenaDo: number;
-  selectedObjemOd: number;
-  selectedObjemDo: number;
+  selectedCenaOd: number=0;
+  selectedCenaDo: number=100000000000;
+  selectedObjemOd: number=0;
+  selectedObjemDo: number=100000000000;
   selectedPalivo: string[]=[];
 
 

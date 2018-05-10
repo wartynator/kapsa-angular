@@ -55,7 +55,7 @@ export class VehicleService {
 
     public getPreferences(preferences: Preference[]){
       this.preferences=preferences;
-      console.log(this.preferences);
+      
     }
     
     public getFulltext(fulltext: string){
@@ -78,9 +78,10 @@ this.fulltext=fulltext;
       this.domainRequest.fullTextInput=this.fulltext;
       this.domainRequest.preferences=this.preferences;
       
-      console.log(this.domainRequest);
-     this.http.post(this.serverUrl,this.domainRequest,options);
-     this.getJSON().subscribe(res => console.log(res));
+      //console.log(this.domainRequest);
+      console.log(this.http.post(this.serverUrl,this.domainRequest,options).subscribe(res => res.json))
+     return this.http.post(this.serverUrl,this.domainRequest,options);
+     
     }
                     
 
