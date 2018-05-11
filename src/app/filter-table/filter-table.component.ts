@@ -47,7 +47,7 @@ export class FilterTableComponent {
  
   constructor(private vehicleService: VehicleService) {
     this.sortedData = this.vehicles.slice();
-    
+    //this.dataSource = new MatTableDataSource(this.vehicles);
     this.vehicleService.onFilterChanged$.subscribe(item => {
       this.getVehicles().subscribe((vehicles) => {
         console.log(vehicles)
@@ -63,7 +63,13 @@ export class FilterTableComponent {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   ngOnInit() {
-    
+    console.log(this.vehicles);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.getVehicles().subscribe((vehicles) => {
+      console.log(vehicles)
+      this.dataSource.data = vehicles;  
+    });
   }
   
   sortData(sort: Sort) {

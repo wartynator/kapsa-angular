@@ -56,17 +56,30 @@ export class FilterPanelComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.selectedRychlost = 6;
+    this.selectedVykon = 300;
+    this.selectedAirbagy = 6;
+    this.selectedDvere = 4;
+    this.selectedKilometreOd = 0;
+    this.selectedKilometreDo = 50000;
+    this.selectedRokOd = 1990;
+    this.selectedRokDo = 2008;
+    this.selectedCenaOd = 0;
+    this.selectedCenaDo = 50000;
+    this.selectedObjemOd = 0;
+    this.selectedObjemDo = 200;
   }
   filtruj(){
 
   }
 
   setStav(value){
+    this.selectedHavarovane=[];
     if(value == 1 ){
       this.selectedHavarovane.push("havarovane");
     }
      else{
-      this.selectedHavarovane.push ("nehavarovane");
+      this.selectedHavarovane.push("nehavarovane");
      }
   
      
@@ -90,7 +103,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   setKaroseria(value){
-    this.selectedKaroseria= value;
+    this.selectedKaroseria.push(value);
     console.log(this.selectedKaroseria);
   }
 
@@ -145,8 +158,8 @@ export class FilterPanelComponent implements OnInit {
   }
 
   setPalivo(value){
-    this.selectedPalivo= value;
-    console.log(this.selectedPalivo);
+    this.selectedPalivo.push(value);
+    
   }
 
   setValueFilter(valueFilter){

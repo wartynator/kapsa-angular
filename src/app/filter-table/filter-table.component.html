@@ -2,7 +2,7 @@
     
   <div class="example-header">
         <mat-form-field>
-          <input matInput #Filter (keyup)="fulltextFilter(Filter.value)" (input)="sendDomainRequest()" placeholder="Filter">
+          <input matInput #Filter (input)="fulltextFilter(Filter.value)" (input)="sendDomainRequest()" placeholder="Filter">
         </mat-form-field>
       </div>
 
