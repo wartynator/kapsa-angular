@@ -28,6 +28,7 @@ public onFilterChanged$ : EventEmitter<number>;
 
    public vehicles: Vehicle[] = [];
    public preferences: Preference[]=[];
+   public preference: Preference;
    public fulltext: string="";
    public domainRequest: domainRequest;
    public serverUrl = 'http://localhost:8080/domainObjects';
@@ -78,7 +79,8 @@ public onFilterChanged$ : EventEmitter<number>;
       //     observable.next(res.json())
       //   );
       // }) 
-      return this.http.post(this.serverUrl, this.domainRequest, options).map((res:Response) => res.json())    
+   
+      return this.http.post(this.serverUrl, this.domainRequest, options).map((res:Response) =>  res.json())    
       
     }
 }

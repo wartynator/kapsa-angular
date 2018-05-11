@@ -24,27 +24,28 @@ export class FilterPanelComponent implements OnInit {
   value: any;
   valueFilter: any;
  
-  selectedRychlost: number;
-  selectedVykon:number;
+  selectedRychlost: number=0;
+  selectedVykon:number=0;
   selectedHavarovane:string[]=[];
-  selectedAirbagy: number;
+  selectedAirbagy: number=0;
   selectedKaroseria: string[]=[];
-  selectedDvere: number;
-  selectedKilometreOd: number;
-  selectedKilometreDo: number;
-  selectedRokOd: number;
-  selectedRokDo: number;
+  selectedDvere: number=0;
+  selectedKilometreOd: number=0;
+  selectedKilometreDo: number=1000000000;
+  selectedRokOd: number=0;
+  selectedRokDo: number=10000000000;
   selectedModel: string[]=[];
-  selectedCenaOd: number;
-  selectedCenaDo: number;
-  selectedObjemOd: number;
-  selectedObjemDo: number;
+  selectedCenaOd: number=0;
+  selectedCenaDo: number=100000000000;
+  selectedObjemOd: number=0;
+  selectedObjemDo: number=100000000000;
   selectedPalivo: string[]=[];
 
 
   constructor(private vehicleService: VehicleService) {
    this.vehicleService.postDomainRequest().subscribe((vehicle) => {
     // kazdy prvok z (vehicle) pridam this.vehicles co mam v instancnej premennej
+    this.vehicles=[];
       vehicle.forEach(element => {
       this.vehicles.push(element);      
       this.karoserie =  _.uniqWith(this.vehicles.map(a => a.karoseria), _.isEqual);    
@@ -74,12 +75,18 @@ export class FilterPanelComponent implements OnInit {
   }
 
   setStav(value){
+    this.selectedHavarovane=[];
     if(value == 1 ){
       this.selectedHavarovane.push("havarovane");
     }
      else{
       this.selectedHavarovane.push ("nehavarovane");
      }   
+      this.selectedHavarovane.push("nehavarovane");
+     }
+  
+     
+    console.log(this.selectedHavarovane);
   }
 
   setVykon(value){
@@ -97,6 +104,8 @@ export class FilterPanelComponent implements OnInit {
 
   setKaroseria(value){
     this.selectedKaroseria.push (value);
+    this.selectedKaroseria.push(value);
+    console.log(this.selectedKaroseria);
   }
 
   setDvere(value){
@@ -141,6 +150,8 @@ export class FilterPanelComponent implements OnInit {
 
   setPalivo(value){
     this.selectedPalivo= value;
+    this.selectedPalivo.push(value);
+    
   }
 
   setValueFilter(valueFilter){
@@ -150,6 +161,9 @@ export class FilterPanelComponent implements OnInit {
 
   sendPreferences(){ 
   this.preferences=[];   
+   this.preferences=[];   
+
+
   this.preferences.push(
   {type:"JsonStringPreference",attributeName:"stav",restrictions:this.selectedHavarovane},
   {type:"JsonDoublePreference",attributeName:"vykon motora",restrictions:[this.selectedVykon,this.selectedVykon]},
