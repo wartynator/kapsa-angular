@@ -8,7 +8,7 @@ import {MatSliderModule} from '@angular/material/slider';
 import * as _ from 'lodash';
 import { Preference } from './../models/Preference';
 import { domainRequest } from '../models/domainRequest';
-;
+
 
 @Component({
   selector: 'app-filter-panel',
@@ -46,18 +46,31 @@ export class FilterPanelComponent implements OnInit {
    this.vehicleService.postDomainRequest().subscribe((vehicle) => {
     // kazdy prvok z (vehicle) pridam this.vehicles co mam v instancnej premennej
       vehicle.forEach(element => {
-      this.vehicles.push(element);        
+      this.vehicles.push(element);      
       this.karoserie =  _.uniqWith(this.vehicles.map(a => a.karoseria), _.isEqual);    
       this.modely =  _.uniqWith(this.vehicles.map(a => a.model), _.isEqual); 
+      console.log(this.modely)
       this.paliva =  _.uniqWith(this.vehicles.map(a => a['typ paliva']), _.isEqual);   
       });
   });
    }
 
   ngOnInit() {
+    this.selectedRychlost = 6;
+    this.selectedVykon = 300;
+    this.selectedAirbagy = 6;
+    this.selectedDvere = 4;
+    this.selectedKilometreOd = 0;
+    this.selectedKilometreDo = 50000;
+    this.selectedRokOd = 1990;
+    this.selectedRokDo = 2008;
+    this.selectedCenaOd = 0;
+    this.selectedCenaDo = 50000;
+    this.selectedObjemOd = 0;
+    this.selectedObjemDo = 200;
   }
-  filtruj(){
 
+  filtruj(){
   }
 
   setStav(value){
@@ -66,86 +79,68 @@ export class FilterPanelComponent implements OnInit {
     }
      else{
       this.selectedHavarovane.push ("nehavarovane");
-     }
-  
-     
-    console.log(this.selectedHavarovane);
+     }   
   }
 
   setVykon(value){
     this.selectedVykon = value;
-    console.log(this.selectedVykon);
   }
 
   setRychlost(value){
     this.selectedRychlost = value;
-    console.log(this.selectedRychlost);
   }
   
 
   setAirbagy(value){
     this.selectedAirbagy= value;
-    console.log(this.selectedAirbagy);
   }
 
   setKaroseria(value){
-    this.selectedKaroseria= value;
-    console.log(this.selectedKaroseria);
+    this.selectedKaroseria.push (value);
   }
 
   setDvere(value){
     this.selectedDvere= value;
-    console.log(this.selectedDvere);
   }
 
   setKilometreOd(value){
     this.selectedKilometreOd= value;
-    console.log(this.selectedKilometreOd);
   }
 
   setKilometreDo(value){
     this.selectedKilometreDo= value;
-    console.log(this.selectedKilometreDo);
   }
 
   setRokOd(value){
     this.selectedRokOd= value;
-    console.log(this.selectedRokOd);
   }
 
   setRokDo(value){
     this.selectedRokDo= value;
-    console.log(this.selectedRokDo);
   }
 
   setModel(value){
-    this.selectedModel.push(value);
-    console.log(this.selectedModel);
+    this.selectedModel.push("TL");
   }
 
   setCenaOd(value){
     this.selectedCenaOd= value;
-    console.log(this.selectedCenaOd);
   }
 
   setCenaDo(value){
     this.selectedCenaDo= value;
-    console.log(this.selectedCenaDo);
   }
 
   setObjemOd(value){
     this.selectedObjemOd= value;
-    console.log(this.selectedObjemOd);
   }
 
   setObjemDo(value){
     this.selectedObjemDo= value;
-    console.log(this.selectedObjemDo);
   }
 
   setPalivo(value){
     this.selectedPalivo= value;
-    console.log(this.selectedPalivo);
   }
 
   setValueFilter(valueFilter){
@@ -154,7 +149,7 @@ export class FilterPanelComponent implements OnInit {
 
 
   sendPreferences(){ 
-   this.preferences=[];   
+  this.preferences=[];   
   this.preferences.push(
   {type:"JsonStringPreference",attributeName:"stav",restrictions:this.selectedHavarovane},
   {type:"JsonDoublePreference",attributeName:"vykon motora",restrictions:[this.selectedVykon,this.selectedVykon]},
@@ -166,21 +161,13 @@ export class FilterPanelComponent implements OnInit {
   {type:"JsonDoublePreference",attributeName:"rok vyroby",restrictions:[this.selectedRokOd,this.selectedRokDo]},
   {type:"JsonStringPreference",attributeName:"model",restrictions:this.selectedModel},
   {type:"JsonDoublePreference",attributeName:"cena",restrictions:[this.selectedCenaOd,this.selectedCenaDo]},
-  {type:"JsonDoublePreference",attributeName:"objem motora",restrictions:[this.selectedObjemOd,this.selectedModel]},
+  {type:"JsonDoublePreference",attributeName:"objem motora",restrictions:[this.selectedObjemOd,this.selectedObjemDo]},
   {type:"JsonStringPreference",attributeName:"typ paliva",restrictions:this.selectedPalivo},
 );
- 
-
-    this.vehicleService.getPreferences(this.preferences);
-
+  this.vehicleService.getPreferences(this.preferences);
   }
-
   
   sendDomainRequest(){
-
     this.vehicleService.onFilterChanged$.emit(42);
   }
-
-
-
 }

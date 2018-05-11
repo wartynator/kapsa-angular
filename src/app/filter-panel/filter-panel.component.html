@@ -22,7 +22,7 @@
             <li class="list-group-item">
               <div class="form-group">
                   <label for="karoseria">Karoseria:</label>
-                  <select #karoseria class="form-control" (change)="setKaroseria(karoseria.value)" >
+                  <select #karoseria class="form-control" (input)="setKaroseria(karoseria.value)" >
                     <option *ngFor ="let karoseria of karoserie">{{karoseria}}</option>
                     
                   </select>
@@ -56,7 +56,7 @@
                     <li class="list-group-item">
                       <div class="form-group">
                         <label for="model">Model:</label>
-                        <select #model class="form-control" (change)="setModel(model.value)" >
+                        <select #model class="form-control" (input)="setModel(model.value)" >
                           <option *ngFor ="let model of modely">{{model}}</option>
                           
                         </select>
