@@ -59,34 +59,28 @@ export class FilterPanelComponent implements OnInit {
   ngOnInit() {
     this.selectedRychlost = 6;
     this.selectedVykon = 300;
-    this.selectedAirbagy = 6;
-    this.selectedDvere = 4;
+    this.selectedAirbagy = 1;
+    this.selectedDvere = 2;
     this.selectedKilometreOd = 0;
-    this.selectedKilometreDo = 50000;
+    this.selectedKilometreDo = 2000000;
     this.selectedRokOd = 1990;
     this.selectedRokDo = 2008;
     this.selectedCenaOd = 0;
-    this.selectedCenaDo = 50000;
+    this.selectedCenaDo = 10000000;
     this.selectedObjemOd = 0;
-    this.selectedObjemDo = 200;
+    this.selectedObjemDo = 18000;
   }
 
   filtruj(){
   }
 
   setStav(value){
-    this.selectedHavarovane=[];
     if(value == 1 ){
       this.selectedHavarovane.push("havarovane");
     }
      else{
       this.selectedHavarovane.push ("nehavarovane");
      }   
-      this.selectedHavarovane.push("nehavarovane");
-     }
-  
-     
-    console.log(this.selectedHavarovane);
   }
 
   setVykon(value){
@@ -105,7 +99,6 @@ export class FilterPanelComponent implements OnInit {
   setKaroseria(value){
     this.selectedKaroseria.push (value);
     this.selectedKaroseria.push(value);
-    console.log(this.selectedKaroseria);
   }
 
   setDvere(value){
@@ -129,7 +122,7 @@ export class FilterPanelComponent implements OnInit {
   }
 
   setModel(value){
-    this.selectedModel.push("TL");
+    this.selectedModel.push(value);
   }
 
   setCenaOd(value){
@@ -150,8 +143,6 @@ export class FilterPanelComponent implements OnInit {
 
   setPalivo(value){
     this.selectedPalivo= value;
-    this.selectedPalivo.push(value);
-    
   }
 
   setValueFilter(valueFilter){
@@ -182,6 +173,6 @@ export class FilterPanelComponent implements OnInit {
   }
   
   sendDomainRequest(){
-    this.vehicleService.onFilterChanged$.emit(42);
+    this.vehicleService.onFilterChanged$.emit(0);
   }
 }

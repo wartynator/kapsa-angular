@@ -1,101 +1,117 @@
 <div class="row" style="margin-top: 2rem">
-    <ul class="list-group"  style="width: 15rem" (input)="sendPreferences()" (input)="sendDomainRequest()">
-        <li class="list-group-item"><p>Stav</p>  
-          <div class="row" > 
-            <label style="margin-left: 2rem;">Havarovane</label> 
-            <label style="margin-left: 3rem;">Nehavarovane</label>
-          </div>
-          <div class="row" style="margin-left:2rem">
-         <input type="range" min="1" max="2" #rangerStav (input)="setStav(rangerStav.value)">
-        </div>
-        </li>
-            
-        <li class="list-group-item"><p>Vykon</p>
-          <input type="range" min="1" max="500" #rangerVykon (input)="setVykon(rangerVykon.value)"></li>
-    
-        <li class="list-group-item"><p>Pocet rychlosti</p>
-          <input type="range" min="1" max="6" #rangerRychlosti (input)="setRychlost(rangerRychlosti.value)"></li>
-    
-          <li class="list-group-item"><p>Pocet airbagov</p>
-            <input type="range" min="1" max="8" #rangerAirbagov (input)="setAirbagy(rangerAirbagov.value)"></li>
-    
-            <li class="list-group-item">
-              <div class="form-group">
-                  <label for="karoseria">Karoseria:</label>
-                  <select #karoseria class="form-control" (input)="setKaroseria(karoseria.value)" >
-                    <option *ngFor ="let karoseria of karoserie">{{karoseria}}</option>
-                    
-                  </select>
-                </div> </li>
-    
-              <li class="list-group-item"><p>Pocet dveri</p>
-                <input type="range" min="1" max="4" #rangerDveri (input)="setDvere(rangerDveri.value)"></li>
-    
-                <li class="list-group-item"><p>Pocet Kilometrov</p>
-                  <div class="row"  style="margin-left: 1rem;">
-                <label>Od:</label> 
-                <input type="text"  #KilometreOd (input)="setKilometreOd(KilometreOd.value)" style="margin-bottom: 0.5rem">
-              </div>
-              <div class="row" style="margin-left: 1rem;">
-                <label>Do:</label> 
-                <input type="text"  #KilometreDo (input)="setKilometreDo(KilometreDo.value)">
-              </div>
-            </li>
-                  <li class="list-group-item"><p>Rok vyroby</p>
-                    <div class="row"  style="margin-left: 1rem;">
-                      <label>Od:</label> 
-                      <input type="text"  #rokOd (input)="setRokOd(rokOd.value)" style="margin-bottom: 0.5rem">
-                    </div>
-                    <div class="row" style="margin-left: 1rem;">
-                      <label>Do:</label> 
-                      <input type="text"  #rokDo (input)="setRokDo(rokDo.value)">
-                    </div>
-                  
-                  </li>
-    
-                    <li class="list-group-item">
-                      <div class="form-group">
-                        <label for="model">Model:</label>
-                        <select #model class="form-control" (input)="setModel(model.value)" >
-                          <option *ngFor ="let model of modely">{{model}}</option>
-                          
-                        </select>
-                      </div> </li>
-    
-                      <li class="list-group-item"><p>Cena</p>
-                        <div class="row"  style="margin-left: 1rem;">
-                          <label>Od:</label> 
-                          <input type="text"  #CenaOd (input)="setCenaOd(KilometreOd.value)" style="margin-bottom: 0.5rem">
-                        </div>
-                        <div class="row" style="margin-left: 1rem;">
-                          <label>Do:</label> 
-                          <input type="text"  #CenaDo (input)="setCenaDo(KilometreDo.value)">
-                        </div>
-                      </li>
-    
-                        <li class="list-group-item"><p>Objem motora</p>
-                          <div class="row"  style="margin-left: 1rem;">
-                              <label>Od:</label> 
-                              <input type="text"  #objemOd (input)="setObjemOd(objemOd.value)" style="margin-bottom: 0.5rem">
-                            </div>
-                            <div class="row" style="margin-left: 1rem;">
-                              <label>Do:</label> 
-                              <input type="text"  #objemDo (input)="setObjemDo(objemDo.value)">
-                            </div>
-                        </li>
-    
-                          <li class="list-group-item"> 
-                            <div class="form-group">
-                            <label for="palivo">Typ paliva:</label>
-                            <select #palivo class="form-control" (change)="setPalivo(palivo.value)" >
-                              <option *ngFor ="let palivo of paliva">{{palivo}}</option>
-                              
-                            </select>
-                          </div> </li>
-                          <li class="list-group-item"> 
-                              <button class="btn btn-info btn-lg" ng-click="filtruj()" >Filtruj</button>
-                               </li>
-                         
-      </ul> 
-      
-</div>    
+  <ul class="list-group" style="width: 15rem" (input)="sendPreferences()" (input)="sendDomainRequest()">
+    <li class="list-group-item">
+      <p>Stav</p>
+      <div class="row">
+        <label style="margin-left: 2rem;">Havarovane</label>
+        <label style="margin-left: 3rem;">Nehavarovane</label>
+      </div>
+      <div class="row" style="margin-left:2rem">
+        <input type="range" min="1" max="2" #rangerStav (input)="setStav(rangerStav.value)">
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <p>Vykon</p>
+      <input type="range" min="1" max="500" #rangerVykon (input)="setVykon(rangerVykon.value)">
+    </li>
+
+    <li class="list-group-item">
+      <p>Pocet rychlosti</p>
+      <input type="range" min="6" max="8" #rangerRychlosti (input)="setRychlost(rangerRychlosti.value)">
+    </li>
+
+    <li class="list-group-item">
+      <p>Pocet airbagov</p>
+      <input type="range" min="1" max="8" #rangerAirbagov (input)="setAirbagy(rangerAirbagov.value)">
+    </li>
+
+    <li class="list-group-item">
+      <div class="form-group">
+        <label for="karoseria">Karoseria:</label>
+        <select #karoseria class="form-control" (input)="setKaroseria(karoseria.value)">
+          <option *ngFor="let karoseria of karoserie">{{karoseria}}</option>
+
+        </select>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <p>Pocet dveri</p>
+      <input type="range" min="2" max="4" #rangerDveri (input)="setDvere(rangerDveri.value)">
+    </li>
+
+    <li class="list-group-item">
+      <p>Pocet Kilometrov</p>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Od:</label>
+        <input type="text" #KilometreOd (input)="setKilometreOd(KilometreOd.value)" style="margin-bottom: 0.5rem">
+      </div>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Do:</label>
+        <input type="text" #KilometreDo (input)="setKilometreDo(KilometreDo.value)">
+      </div>
+    </li>
+    <li class="list-group-item">
+      <p>Rok vyroby</p>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Od:</label>
+        <input type="text" #rokOd (input)="setRokOd(rokOd.value)" style="margin-bottom: 0.5rem">
+      </div>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Do:</label>
+        <input type="text" #rokDo (input)="setRokDo(rokDo.value)">
+      </div>
+
+    </li>
+
+    <li class="list-group-item">
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <select #model class="form-control" (input)="setModel(model.value)">
+          <option *ngFor="let model of modely">{{model}}</option>
+
+        </select>
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <p>Cena</p>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Od:</label>
+        <input type="text" #CenaOd (input)="setCenaOd(KilometreOd.value)" style="margin-bottom: 0.5rem">
+      </div>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Do:</label>
+        <input type="text" #CenaDo (input)="setCenaDo(KilometreDo.value)">
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <p>Objem motora</p>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Od:</label>
+        <input type="text" #objemOd (input)="setObjemOd(objemOd.value)" style="margin-bottom: 0.5rem">
+      </div>
+      <div class="row" style="margin-left: 1rem;">
+        <label>Do:</label>
+        <input type="text" #objemDo (input)="setObjemDo(objemDo.value)">
+      </div>
+    </li>
+
+    <li class="list-group-item">
+      <div class="form-group">
+        <label for="palivo">Typ paliva:</label>
+        <select #palivo class="form-control" (change)="setPalivo(palivo.value)">
+          <option *ngFor="let palivo of paliva">{{palivo}}</option>
+
+        </select>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <button class="btn btn-info btn-lg" ng-click="filtruj()">Filtruj</button>
+    </li>
+
+  </ul>
+
+</div>
